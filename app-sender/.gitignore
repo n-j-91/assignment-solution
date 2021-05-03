@@ -8,3 +8,5 @@ build
 build/*
 .venv
 .vnev/*
+__pycache__
+__pycache__/*

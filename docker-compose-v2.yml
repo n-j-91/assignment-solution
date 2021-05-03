@@ -1,0 +1,33 @@
+# This docker-compose file will assume that docker swarm is enable. One node swarm cluster is sufficient.
+# 1. First build the images with "docker-compose build --no-cache".
+# 2. Then Run "docker swarm init" to initialize a single node swarm cluster.
+# 3. Next run "./create-docker-secret.sh" to create docker secrets to be used with the containers.
+# 4. Finally run "docker stack deploy --compose-file docker-compose-v2.yml".
+version: "3.9"
+services:
+  app-receiver:
+    build: ./app-receiver
+    image: app-receiver:latest
+    volumes:
+    - ${PWD}/output:/usr/src/app-receiver/output
+    environment:
+    - DECRYPTION_KEY=/run/secrets/app-sender-receiver-key
+    ports:
+    - "8080:8080"
+    secrets:
+    - app-sender-receiver-key
+  app-sender:
+    build: ./app-sender
+    image: app-sender:latest
+    volumes:
+    - ${PWD}/input:/usr/src/app-sender/input
+    - ${PWD}/status-db:/usr/src/app-sender/status-db
+    environment:
+      - RECEIVER_ADDRESS=app-receiver
+      - RECEIVER_PORT=8080
+      - ENCRYPTION_KEY=/run/secrets/app-sender-receiver-key
+    secrets:
+      - app-sender-receiver-key
+secrets:
+  app-sender-receiver-key:
+    external: true

@@ -1,0 +1,12 @@
+__pycache__
+__pycache__/*
+app_receiver.egg-info
+app_receiver.egg-info/*
+build
+build/*
+dist
+dist/*
+build
+build/*
+.venv
+.vnev/*

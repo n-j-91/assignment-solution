@@ -2,8 +2,8 @@
 .idea/*
 key
 status-db
-status-db/
+status-db/*
 input
-input/
+input/*
 output
-output/
+output/*
