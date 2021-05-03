@@ -1,0 +1,10 @@
+app_sender.egg-info
+app_sender.egg-info/*
+build
+build/*
+dist
+dist/*
+build
+build/*
+.venv
+.vnev/*
