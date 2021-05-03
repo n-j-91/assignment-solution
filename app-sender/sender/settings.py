@@ -1,5 +1,8 @@
 import logging
 import os
+"""
+This file maintains configurations for app-sender.
+"""
 
 logging.basicConfig(format='[%(asctime)s] - [%(levelname)s] - [%(filename)s] - %(message)s',
                     level=os.getenv("LOG_LEVEL", logging.INFO))
