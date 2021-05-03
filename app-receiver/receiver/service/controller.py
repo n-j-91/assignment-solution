@@ -8,6 +8,11 @@ dec = Decrypter(settings.DECRYPTION_KEY)
 
 @app.route("/", methods=["GET"])
 def health_check():
+    """
+    Requests sent to / (root) is handled by this method.
+    Considered as a health check endpoint for the application.
+    :return: A tuple with json data and status_code
+    """
     data = {"msg": "Server is healthy", "status_code": 200}
     return jsonify(data), 200
 
