@@ -91,6 +91,26 @@ Try to address as many points as you can.
 1. Open _app-receiver/receiver/service/controller.py_ and locate _upload_file_ method.
    This method is incomplete. Refer to the comments provided with the method and complete 
    the implementation to achieve what is expected from it. Use the hints provided.
+   ```
+   Hint: 
+   Locate the test_upload_file pytest method in app-receiver/tests/test_controller.py module.
+   Implement this upload_file method in a way that pytest for test_upload_file passes.
+   ```
+
+2. There are some simple pytests added in test_controller.py file of the app-receiver.
+   They can be located in _app-receiver/receiver/tests_ directory. Change the directory
+   to _app-receiver/_ and run the tests.
+   ```
+   cd ./app-receiver/
+   pytest -v tests
+   ```
+   Observe the assertion failure for test_health_check method.
+   ```
+   =========================================================================== short test summary info ===========================================================================
+   FAILED tests/test_controller.py::test_health_check - AssertionError: assert {'msg': 'Serv...us_code': 200} == {'msg': 'Serv...us_code': 200}
+
+   ```
+   Fix the health_check method to pass the test case.
    
-2. 
+
    
