@@ -76,3 +76,12 @@ app-sender acts as a client to app-receiver. It is capable of following tasks.
   
 - When successfully processed the file, it will add a record in the state handler.
 - Above tasks will be repeated in an infinite loop, with a delay between each cycle, specified with SCAN_INTERVAL environment variable.
+
+# ASSIGNMENT TASKS
+
+There are missing pieces in this solution.
+Your task is to fill each missing piece in a way that final solution is
+functional as described above.
+
+Below instructions will guide you to locate each part that requires a fix.
+Try to address as many points as you can.
