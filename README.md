@@ -54,8 +54,8 @@ app-receiver provides two rest interfaces.
   Checks the health of the service. Returns 200 with json response when successful.
   
 - POST /upload/\<filename>  
-  Accepts a file in the form of multipart/form-data. Upon successful receiving of the
-  file, decrypts it using a provided key and store to a location specified.
+  Accepts a file in the form of multipart/form-data. Upon successful receipt of the
+  file, it will be decrypted and stored to a location specified.
   
 
 
