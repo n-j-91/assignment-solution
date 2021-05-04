@@ -1,6 +1,6 @@
 def test_health_check(client):
     """
-    Validates is / "health check" responds with 200 and json on GET.
+    Validate is / responds with 200 and json response on GET.
     :param client: App client
     :return:
     """
@@ -11,7 +11,7 @@ def test_health_check(client):
 
 def test_upload_file(client, tmp_path, set_mock_decrypty):
     """
-    Validates if /upload/<filename> will return 201 and json
+    Validate if /upload/<filename> will return 201 and json response
     on successful upload of a file with a POST.
     :param client: App client
     :param tmp_path: fixture to access tmp path
@@ -21,11 +21,11 @@ def test_upload_file(client, tmp_path, set_mock_decrypty):
     resp = None
     with open(tmp_path/"test_file.txt", "w") as file:
         file.write("Some dummy test data.")
-        with open(tmp_path/"test_file.txt", "rb") as filedata:
-            data = {
-                'file': filedata
-            }
-            resp = client.post("/upload/testfile", data=data)
+    with open(tmp_path/"test_file.txt", "rb") as filedata:
+        data = {
+            'file': filedata
+        }
+        resp = client.post("/upload/testfile", data=data)
     assert resp.status_code == 201
-    assert resp.json ==  {'msg': 'File is decrypted and saved to /usr/src/app-receiver/output/testfile.xml',
-                          'status_code': 201}
+    assert resp.json == {'msg': 'File is decrypted and saved to /usr/src/app-receiver/output/testfile.xml',
+                         'status_code': 201}

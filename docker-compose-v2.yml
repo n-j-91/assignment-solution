@@ -6,7 +6,9 @@
 version: "3.9"
 services:
   app-receiver:
-    build: ./app-receiver
+    build:
+      context: ./app-receiver
+      target: production_image
     image: app-receiver:latest
     volumes:
     - ${PWD}/output:/usr/src/app-receiver/output
@@ -17,7 +19,9 @@ services:
     secrets:
     - app-sender-receiver-key
   app-sender:
-    build: ./app-sender
+    build:
+      context: ./app-sender
+      target: production_image
     image: app-sender:latest
     volumes:
     - ${PWD}/input:/usr/src/app-sender/input

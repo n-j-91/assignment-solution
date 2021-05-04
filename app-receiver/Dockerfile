@@ -1,3 +1,4 @@
+####################################################
 FROM python:3 as production_image
 
 ENV SERVER_IP="0.0.0.0"
@@ -15,6 +16,15 @@ COPY Pipfile.lock ./
 
 RUN mkdir -p /usr/src/app-receiver/output
 RUN pip install --no-cache-dir pipenv
-RUN pipenv install  --system --deploy --ignore-pipfile
+RUN pipenv install --system --deploy --ignore-pipfile
 
 ENTRYPOINT ["gunicorn", "server:app"]
+
+######################################################
+FROM production_image as development_image
+
+COPY ./receiver ./receiver
+COPY ./tests ./tests
+
+RUN pipenv install --system --deploy --ignore-pipfile --dev
+RUN pytest -v tests

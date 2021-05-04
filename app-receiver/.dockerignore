@@ -1,5 +1,7 @@
 __pycache__
 __pycache__/*
+.pytest_cache
+.pytest_cache/*
 app_receiver.egg-info
 app_receiver.egg-info/*
 build
