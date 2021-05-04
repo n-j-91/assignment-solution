@@ -114,9 +114,10 @@ Try to address as many points as you can.
    > - Consider test_upload_file to be correct.
    > - Implement this upload_file method in a way that pytest for test_upload_file passes.
 
-3. There are some missing statements in _./app-receiver/Dockerfile_.
-   Identify and add these missing statements to successfully build and run the docker container
-   for app-receiver. See below example.
+3. There are some missing directives in _./app-receiver/Dockerfile_.
+   Identify and add these missing statements to the Dockerfile so that it can be 
+   successfully built and run as a container. 
+   See below example of a successful execution of app-receiver container.
    ```
    docker run --rm app-receiver:latest
    [2021-05-04 22:11:29 +0000] [1] [INFO] Starting gunicorn 20.1.0
@@ -157,10 +158,10 @@ Try to address as many points as you can.
    > docker build -t app-receiver:latest --target development_image app-receiver/
    > ```
    
-5. _run_scan()_ method of _app-sender/sender/__main__.py_ has slight logical problem in its design.
+5. _run_scan()_ method of _app-sender/sender/\_\_main\_\_.py_ has slight logical problem in its design.
    In terms of converting, encrypting and transferring the file to the remote server, 
    there is **an added delay between each step, for the same .json file.**
-   Could you fix this?
+   Can you identify this and fix?
    
    > e.g.:
    > 
@@ -171,4 +172,14 @@ Try to address as many points as you can.
    > app-sender_1    | [2021-05-04 22:59:20,269] - [INFO] - [utils.py] - books is uploaded successfully. Response from server: File is decrypted and saved to /usr/src/app-receiver/output/books.xml
    > ```
    
-6. 
+6. An important directive is missing from _app-sender/Dockerfile_. 
+   When it is built and run, no output is visible. See below example.
+   ```
+   docker run -v ${PWD}/input:/usr/src/app-sender/input sender:test
+   <NO OUTPUT>
+   
+   docker ps -a                                                    
+   CONTAINER ID   IMAGE         COMMAND     CREATED          STATUS                     PORTS     NAMES
+   aa9f86df4596   sender:test   "python3"   3 seconds ago    Exited (0) 2 seconds ago             thirsty_benz
+   ```
+   Can this be fixed?
