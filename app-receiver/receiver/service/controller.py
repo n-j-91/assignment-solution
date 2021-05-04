@@ -9,7 +9,7 @@ dec = Decrypter(settings.DECRYPTION_KEY)
 @app.route("/", methods=["GET"])
 def health_check():
     """
-    Requests sent to / (root) is handled by this method.
+    Requests sent to / (root) are handled by this method.
     Considered as a health check endpoint for the application.
     :return: A tuple with json data and status_code
     """
@@ -19,6 +19,17 @@ def health_check():
 
 @app.route('/upload/<filename>', methods=['POST'])
 def upload_file(filename):
+    """
+    Requests sent to /upload/<filename> are handled by this method.
+    Content-type handled by this rest api method is multipart/form-data.
+    Request should contain file data ( data of an encrypted xml ).
+
+    Hint: app-sender/sender/utils.upload_to_server(**args) method calls
+    this method over rest api to upload the file.
+
+    :param filename: Path parameter containing a filename
+    :return: A tuple with json data and status_code
+    """
     save_location = "{0}/{1}.xml".format(settings.OUTPUT_DIR, filename)
     uploaded_file = request.files['file']
     dec.decrypt(uploaded_file.read(), save_location)

@@ -5,7 +5,7 @@ import os
 
 class Encrypter:
     """
-    This is an Enryption handler.
+    This is an Encryption handler.
     It will load a symmetric key for each object and allow encryption based on the loaded key.
     """
     def __init__(self, path_to_key):
@@ -34,7 +34,7 @@ class Encrypter:
         """
         Encrypts a given file using the loaded key.
         :param file_to_encrypt: File to encrypt.
-        :param output_file: Path to encrypted file
+        :param output_file: Path to encrypted file.
         :return: None
         """
         with open(file_to_encrypt, "rb") as fileobj:

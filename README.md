@@ -14,6 +14,8 @@ app-sender and app-receiver are two independent directories containing two parti
 Instructions below elaborate further about the missing pieces of each application.
 Read them carefully and try to complete what is asked in each step to build and deliver a complete solution.
 
+If you are unsure or do not know the answers some questions, leave them blank and answer the remaining.
+
 **IMPORTANT:**  
 - **Please clone or fork this repository before attempting.**  
 - **Solution / answers should be provided as a single pull request.**
