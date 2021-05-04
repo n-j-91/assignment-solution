@@ -13,6 +13,7 @@ cryptography = "3.4.7"
 [dev-packages]
 pylint = "2.8.2"
 pytest = "6.2.3"
+pytest-flask = "1.2.0"
 
 [requires]
 python_version = "3.7"
