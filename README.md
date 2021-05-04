@@ -182,4 +182,21 @@ Try to address as many points as you can.
    CONTAINER ID   IMAGE         COMMAND     CREATED          STATUS                     PORTS     NAMES
    aa9f86df4596   sender:test   "python3"   3 seconds ago    Exited (0) 2 seconds ago             thirsty_benz
    ```
-   Can this be fixed?
+   How can this be fixed?
+
+8. Complete _docker-compose-v1.yml_ file to build and run app-sender and app-receiver applications
+   via docker-compose.
+   
+   > Hints:
+   > 
+   > - When following command is called, it should build _app-receiver:latest_ and _app-sender:latest_
+   > **production docker images**.
+   >  ```
+   >  docker-compose -f docker-compose-v1.yml build --no-cache
+   >  ``` 
+   > - _app-sender_ should be able to fetch input .json files from the host machine.
+   > - Files received and decrypted by _app-receiver_ should be accessible from the host machine.
+   > - Use prepate-env.sh script to create symmetric encryption key that should be shared by both
+   > _app-sender_ and _app-receiver_
+   > - _app-sender_ should persist the state of the processed json files across restarts. In other words,
+   > if _app-sender_ is restarted unexpectedly, the .json file that were already processed by it should not be re-processed.
