@@ -48,3 +48,15 @@ app-receiver is a simple restful application written in Flask framework. It is h
 - _app-receiver/receiver/service/settings.py_ file contains application configurations.
 - All configurations are parsed in the form of Environment Variables. You may override them during run time if required.
 - _app-receiver/receiver/service/controller.py_ has an incomplete method that you need to complete as part of the solution.
+
+app-receiver provides two rest interfaces.
+- GET /  
+  Checks the health of the service. Returns 200 with json response when successful.
+  
+- POST /upload/\<filename>  
+  Accepts a file in the form of multipart/form-data. Upon successful receiving of the
+  file, decrypts it using a provided key and store to a location specified.
+  
+
+
+  
