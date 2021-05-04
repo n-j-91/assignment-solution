@@ -20,14 +20,14 @@ def health_check():
 @app.route('/upload/<filename>', methods=['POST'])
 def upload_file(filename):
     """
-    Requests sent to /upload/<filename> are handled by this method.
-    Content-type handled by this rest api method is multipart/form-data.
+    Requests that are sent to /upload/<filename> are handled by this method.
+    Content-type supported by this rest api method is multipart/form-data.
     Request should contain file data ( data of an encrypted xml ).
 
     Hint: app-sender/sender/utils.upload_to_server(**args) method calls
     this method over rest api to upload the file.
 
-    :param filename: Path parameter containing a filename
+    :param filename: Path parameter sent with the request, containing a filename
     :return: A tuple with json data and status_code
     """
     save_location = "{0}/{1}.xml".format(settings.OUTPUT_DIR, filename)

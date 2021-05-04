@@ -14,11 +14,11 @@ app-sender and app-receiver are two independent directories containing two parti
 Instructions below elaborate further about the missing pieces of each application.
 Read them carefully and try to complete what is asked in each step to build and deliver a complete solution.
 
-If you are unsure or do not know the answers some questions, leave them blank and answer the remaining.
+If you are unsure or do not know the answers to some questions, leave them and answer the remaining.
 
 **IMPORTANT:**  
-- **Please clone or fork this repository before attempting.**  
-- **Solution / answers should be provided as a single pull request.**
+- **Please clone or fork this repository first.**  
+- **Solution / answers should be provided as a single pull request to "main" branch.**
 
 ## Pre Requisites
 
@@ -30,7 +30,7 @@ If you are unsure or do not know the answers some questions, leave them blank an
 - Knowledge in building docker images, running docker containers with docker cli and docker-compose.
 - Knowledge in docker volumes, environment variables used with docker images.
 - Knowledge in simple CI flows, Jenkinsfile.
-- Knowledge in docker swarm or secrets is optional.
+- Optionally the knowledge in docker swarm or docker secrets.
 
 ## Solution Overview
 
@@ -77,6 +77,8 @@ app-sender acts as a client to app-receiver. It is capable of following tasks.
 - When successfully processed the file, it will add a record in the state handler.
 - Above tasks will be repeated in an infinite loop, with a delay between each cycle, specified with SCAN_INTERVAL environment variable.
 
+All configurations are parsed in the form of Environment Variables. You may override them during run time if required.
+
 # ASSIGNMENT TASKS
 
 There are missing pieces in this solution.
@@ -85,3 +87,10 @@ functional as described above.
 
 Below instructions will guide you to locate each part that requires a fix.
 Try to address as many points as you can.
+
+1. Open _app-receiver/receiver/service/controller.py_ and locate _upload_file_ method.
+   This method is incomplete. Refer to the comments provided with the method and complete 
+   the implementation to achieve what is expected from it. Use the hints provided.
+   
+2. 
+   
