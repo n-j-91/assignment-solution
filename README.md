@@ -150,11 +150,25 @@ Try to address as many points as you can.
    > Hints:
    > 
    > - Try to use docker multi-stage builds.
-   > - When you run the following command pytests should be run as part of the build.
+   > - When you run the following command(s) pytests should be run as part of the build.
    > ```
    > docker build -t app-receiver:latest app-receiver/
    > --or--
    > docker build -t app-receiver:latest --target development_image app-receiver/
    > ```
    
+5. _run_scan()_ method of _app-sender/sender/__main__.py_ has slight logical problem in its design.
+   In terms of converting, encrypting and transferring the file to the remote server, 
+   there is **an added delay between each step, for the same .json file.**
+   Could you fix this?
    
+   > e.g.:
+   > 
+   > Notice the delay of 10 seconds between each action output below, for the same .json file.
+   > ```
+   > app-sender_1    | [2021-05-04 22:59:00,192] - [INFO] - [utils.py] - /usr/src/app-sender/input/books.json is converted to /usr/src/app-sender/input/books.xml
+   > app-sender_1    | [2021-05-04 22:59:10,230] - [INFO] - [utils.py] - books.json is encrypted to /usr/src/app-sender/input/books.xml.enc
+   > app-sender_1    | [2021-05-04 22:59:20,269] - [INFO] - [utils.py] - books is uploaded successfully. Response from server: File is decrypted and saved to /usr/src/app-receiver/output/books.xml
+   > ```
+   
+6. 
