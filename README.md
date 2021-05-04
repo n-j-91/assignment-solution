@@ -39,11 +39,11 @@ Directory structure:
 - receiver (source files for receiver application)
 - tests (unit tests)
 - Dockerfile
-- Pipfile (3rd party libraries are packages with pipenv)
+- Pipfile (3rd party libraries are packaged with pipenv)
 - Pipfile.lock
 - setup.py
 
-app-receiver is a simple restful application written in Flask framework. It is hosted with gunicorn.
+app-receiver is a simple restful application written in python Flask framework. It is hosted with gunicorn.
 - _app-receiver/receiver/gunicorn.conf.py_ file contains web server configurations.
 - _app-receiver/receiver/service/settings.py_ file contains application configurations.
 - All configurations are parsed in the form of Environment Variables. You may override them during run time if required.
@@ -55,8 +55,24 @@ app-receiver provides two rest interfaces.
   
 - POST /upload/\<filename>  
   Accepts a file in the form of multipart/form-data. Upon successful receipt of the
-  file, it will be decrypted and stored to a location specified.
-  
+  file, it will be decrypted and stored to a location specified with OUTPUT_DIR environment variable.
 
 
+### app-sender
+Directory structure:
+- sender (source files for sender application)
+- tests (unit tests)
+- Dockerfile
+- Pipfile (3rd party libraries are packaged with pipenv)
+- Pipfile.lock
+- setup.py
+
+app-sender acts as a client to app-receiver. It is capable of following tasks.
+- Scans directory specified in INPUT_DIR environment variable for json files.
+- If a json file is found, it will verify if it has been processed before.
+- If the particular file is processed already, it will skip processing it and move to the next file.
+- If it is not processed already, it will convert it to xml, encrypt with the given key and transfer it
+  to a remote server specified by RECEIVER_ADDRESS, RECEIVER_PORT environment variables.
   
+- When successfully processed the file, it will add a record in the state handler.
+- Above tasks will be repeated in an infinite loop, with a delay between each cycle, specified with SCAN_INTERVAL environment variable.
