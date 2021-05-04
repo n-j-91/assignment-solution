@@ -108,12 +108,12 @@ Try to address as many points as you can.
 2. Open _app-receiver/receiver/service/controller.py_ and locate _upload_file_ method.
    This method is incomplete. Refer to the comments provided with the method and complete 
    the implementation to achieve what is expected from it. Use the hints provided.
-   ```
-   Hint: 
-   Locate the test_upload_file pytest method in app-receiver/tests/test_controller.py module.
-   Consider test_upload_file to be correct.
-   Implement this upload_file method in a way that pytest for test_upload_file passes.
-   ```
+   
+   > Hint: 
+   >
+   > Locate the test_upload_file pytest method in app-receiver/tests/test_controller.py module.
+   > Consider test_upload_file to be correct.
+   > Implement this upload_file method in a way that pytest for test_upload_file passes.
 
 3. There are some missing statements in _./app-receiver/Dockerfile_.
    Identify and add these missing statements to successfully build and run the docker container
