@@ -207,9 +207,10 @@ _app-sender_ and _app-receiver_.However this is not a secure way of sharing the 
    encryption key between two containers.
    As a solution to this problem, "create-docker-secret.sh" script is provided.
    This script will create the symmetric encryption key in the form of a docker secret.
-   Next populate the missing parameters in "docker-compose-v2.yml" file so that
+   
+   Can you populate the missing parameters in "docker-compose-v2.yml" file so that
    it can run the _app-sender_ and _app-receiver_ containers as a **service** in a single node
-   docker swarm cluster.
+   docker swarm cluster?
    
    > Hints:
    > 
