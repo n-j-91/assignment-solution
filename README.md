@@ -111,8 +111,8 @@ Try to address as many points as you can.
    > Hints: 
    >
    > - Locate the test_upload_file pytest method in app-receiver/tests/test_controller.py module.
-   > - Consider test_upload_file to be correct.
-   > - Implement this upload_file method in a way that pytest for test_upload_file passes.
+   > - test_upload_file method is correct and requires no changes.
+   > - Implement upload_file method in a way that pytest for test_upload_file passes.
 
 3. There are some missing directives in _./app-receiver/Dockerfile_.
    Identify and add these missing statements to the Dockerfile so that it can be 
@@ -182,9 +182,9 @@ Try to address as many points as you can.
    CONTAINER ID   IMAGE         COMMAND     CREATED          STATUS                     PORTS     NAMES
    aa9f86df4596   sender:test   "python3"   3 seconds ago    Exited (0) 2 seconds ago             thirsty_benz
    ```
-   How can this be fixed?
-
-8. Complete _docker-compose-v1.yml_ file to build and run app-sender and app-receiver applications
+   How can this be fixed? 
+   
+7. Complete _docker-compose-v1.yml_ file to build and run app-sender and app-receiver applications
    via docker-compose.
    
    > Hints:
@@ -196,7 +196,26 @@ Try to address as many points as you can.
    >  ``` 
    > - _app-sender_ should be able to fetch input .json files from the host machine.
    > - Files received and decrypted by _app-receiver_ should be accessible from the host machine.
-   > - Use prepate-env.sh script to create symmetric encryption key that should be shared by both
+   > - Use prepare-env.sh script to create symmetric encryption key that should be shared by both
    > _app-sender_ and _app-receiver_
    > - _app-sender_ should persist the state of the processed json files across restarts. In other words,
    > if _app-sender_ is restarted unexpectedly, the .json file that were already processed by it should not be re-processed.
+   >
+
+8. **[Optional task]** prepare-env.sh script will create a "key" file that can be mounted to 
+_app-sender_ and _app-receiver_.However this is not a secure way of sharing the symmetric
+   encryption key between two containers.
+   As a solution to this problem, "create-docker-secret.sh" script is provided.
+   This script will create the symmetric encryption key in the form of a docker secret.
+   Next populate the missing parameters in "docker-compose-v2.yml" file so that
+   it can run the _app-sender_ and _app-receiver_ containers as a **service** in a single node
+   docker swarm cluster.
+   
+   > Hints:
+   > 
+   > - Refer the comments available with _create-docker-secret.sh_ and _docker-compose-v2.yml_
+   > files.
+   > - Services in a docker swarm can mount docker secrets to /var/run/\<secret name\> path
+   > of the respective container.
+   
+   
